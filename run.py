@@ -30,7 +30,7 @@ TEMPLATE = """
 <head>
 <title>{title}</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../..//ext.codereview.styles.css"/>
+<link rel="stylesheet" href="../ext.codereview.styles.css"/>
 </head>
 <body>
 <h1>{title}</h1>
@@ -80,7 +80,7 @@ class Archiver:
     def archive_revision(self, rev: int, text: str):
         if rev % 100 == 0:
             print('Archiving {} r{}'.format(self.repo, rev))
-        fname = '../out/{}/rev/{}.html'.format(self.repo, rev)
+        fname = '../out/{}/{}.html'.format(self.repo, rev)
         found = RE_CONTENT.search(text)
         body = '<div id="mw-content-text">{}</div>'.format(found.group(1))
         body = body.replace('href="/', 'href="https://www.mediawiki.org/')
