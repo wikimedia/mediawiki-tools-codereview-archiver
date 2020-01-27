@@ -21,6 +21,7 @@ import hashlib
 import os
 import re
 import requests
+import shutil
 
 
 requests.utils.default_user_agent = \
@@ -100,6 +101,10 @@ class Archiver:
 
 
 def main():
+    shutil.copy(
+        os.path.join(os.path.dirname(__file__), 'ext.codereview.styles.css'),
+        '../out/ext.codereview.styles.css'
+    )
     mw = Archiver('MediaWiki')
     mw.run(115794)
     pwb = Archiver('pywikipedia')
