@@ -39,7 +39,7 @@ TEMPLATE = """
 </body>
 </html>
 """
-RE_CONTENT = re.compile('<div id="mw-content-text">(.*?)<noscript>',
+RE_CONTENT = re.compile('<div id="mw-content-text" class="mw-body-content">(.*?)<noscript>',
                         flags=re.DOTALL | re.MULTILINE)
 
 
@@ -83,7 +83,7 @@ class Archiver:
             print('Archiving {} r{}'.format(self.repo, rev))
         fname = '../out/{}/{}.html'.format(self.repo, rev)
         found = RE_CONTENT.search(text)
-        body = '<div id="mw-content-text">{}</div>'.format(found.group(1))
+        body = '<div id="mw-content-text" class="mw-body-content">{}</div>'.format(found.group(1))
         body = body.replace('href="/', 'href="https://www.mediawiki.org/')
         body = self.rewrite_urls(body)
         content = TEMPLATE.format(
