@@ -58,7 +58,7 @@ class Archiver:
             r'Special:Code/{}/(\d*?)&amp;path="'.format(repo))
 
     def rewrite_urls(self, text: str) -> str:
-        text = self.re1.sub(r'./\g<1>.html"', text)
+        text = self.re1.sub(r'href="./\g<1>.html"', text)
         text = self.re2.sub(r'href="./\g<1>.html#c\g<2>"', text)
         text = self.re3.sub(r'href="./\g<1>.html"', text)
         return text
