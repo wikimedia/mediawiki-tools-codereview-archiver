@@ -26,12 +26,12 @@ import shutil
 
 requests.utils.default_user_agent = \
     lambda name='': 'codereview-archiver/0.1 (legoktm)'
-TEMPLATE = """
-<html>
+TEMPLATE = """<DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<title>{title}</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../ext.codereview.styles.css"/>
+<title>{title}</title>
+<link rel="stylesheet" href="../ext.codereview.styles.css">
 </head>
 <body>
 <h1>{title}</h1>
@@ -56,11 +56,14 @@ class Archiver:
         self.re3 = re.compile(
             r'href="https://www.mediawiki.org/w/index.php\?title='
             r'Special:Code/{}/(\d*?)&amp;path="'.format(repo))
+        self.re4 = re.compile(
+            r'<h2>Diff <small>\[<a href="[^>]+>purge</a>\]</small></h2>')
 
     def rewrite_urls(self, text: str) -> str:
         text = self.re1.sub(r'href="./\g<1>.html"', text)
         text = self.re2.sub(r'href="./\g<1>.html#c\g<2>"', text)
         text = self.re3.sub(r'href="./\g<1>.html"', text)
+        text = self.re4.sub(r'<h2>Diff</h2>', text)
         return text
 
     def download_url(self, rev: int) -> str:

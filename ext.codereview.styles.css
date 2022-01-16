@@ -1,3 +1,24 @@
+body {
+	font-family: sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+.wikitable {
+	background: #f8f9fa;
+	color: #202122;
+	border: 1px solid #a2a9b1;
+	border-collapse: collapse;
+}
+.wikitable th,
+.wikitable td {
+	border: 1px solid #a2a9b1;
+	padding: 0.2em 0.4em;
+}
+.wikitable th {
+	background: #eaecf0;
+}
+
 /** From Extension:CodeReview, GPL-2.0-or-later */
 table.mw-codereview-meta td {
 	vertical-align: top;
